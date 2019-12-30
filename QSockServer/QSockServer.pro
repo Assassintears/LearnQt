@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
@@ -25,17 +25,20 @@ DEFINES += QT_DEPRECATED_WARNINGS
 CONFIG += c++11
 
 SOURCES += \
-        dbthread.cpp \
+        cdata.cpp \
+        database.cpp \
         main.cpp \
-        qsockserver.cpp \
-        quedata.cpp
+        mainwidow.cpp
 
 HEADERS += \
-        dbthread.h \
-        qsockserver.h \
-        quedata.h
+        cdata.h \
+        database.h \
+        maindow.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    imgs.qrc

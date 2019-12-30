@@ -4,12 +4,23 @@
 #include <QList>
 #include <QByteArray>
 #include <QMutex>
+#include <QJsonDocument>
+#include <QJsonArray>
+#include <QJsonParseError>
 
-class ListData
+class CData : public QObject
 {
+    Q_OBJECT
 public:
-    ListData();
-    virtual ~ListData();
+    CData();
+    virtual ~CData();
+
+signals:
+    void oneRowData(int coalID, int scanIndx, int x, QVector<int> vec);
+    void jsonData(QString);
+
+public slots:
+    void parseJson(QByteArray);
 
 public:
     void push(const QByteArray& array);//!插入一个数据
@@ -20,7 +31,5 @@ private:
     static QMutex mutex;
     static QList<QByteArray> data;
 };
-
-static ListData g_Data;
 
 #endif // QUEDATA_H

@@ -1,5 +1,5 @@
-#include "qsockserver.h"
-#include "quedata.h"
+#include "maindow.h"
+#include "cdata.h"
 #include <QApplication>
 
 
@@ -7,7 +7,7 @@
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    QSockServer w;
+    MainWidow w;
     w.show();
 
     return a.exec();

@@ -8,6 +8,11 @@
 QClient::QClient(QWidget *parent)
     : QMainWindow(parent)
 {
+    QIcon* icon = new QIcon(":/resorces/client.ico");
+    if (!icon->isNull())
+    {
+        this->setWindowIcon(*icon);
+    }
     createComs();
     layout();
     SingnalandSlots();
@@ -37,8 +42,6 @@ void QClient::createComs()
     m_labelLocalIP = new QLabel(QStringLiteral("Local IP"), this);
     sendText = new QTextEdit;
 
-    m_lineIP->setText("192.168.2.218");
-    m_linePort->setText("7171");
 
     //!获取本机IP
     QString localHostName = QHostInfo::localHostName();
@@ -50,6 +53,8 @@ void QClient::createComs()
             if(address.protocol() == QAbstractSocket::IPv4Protocol)
             {
                 m_lineLocalIP->setText(address.toString());
+                m_lineIP->setText(address.toString());
+                m_linePort->setText("7171");
                 break;
             }
         }
