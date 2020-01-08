@@ -1,9 +1,10 @@
-#include "mainwindow.h"
+﻿#include "mainwindow.h"
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <QRegExpValidator>
 #include <QAbstractSocket>
 #include <QHostInfo>
+#include <QTime>
 
 QClient::QClient(QWidget *parent)
     : QMainWindow(parent)
@@ -106,16 +107,18 @@ void QClient::connectToServer()
     quint16 port = m_linePort->text().toUShort();
     m_sockClient->connectToHost(ip, port, QIODevice::ReadWrite, QAbstractSocket::IPv4Protocol);
     m_sockClient->waitForConnected(1000);
+    QTime current = QTime::currentTime();
     if (QAbstractSocket::ConnectingState == m_sockClient->state() ||
             QAbstractSocket::ConnectedState == m_sockClient->state())
     {
-        text->clear();
-        text->setPlainText("连接成功\n");
+
+        QString tmp = current.toString() + ": Connect to server success\r";
+        text->insertPlainText(tmp);
     }
     else
     {
-        text->clear();
-        text->setPlainText("连接失败\n");
+        QString tmp = current.toString() + ": Connect to server failure\r";
+        text->insertPlainText(tmp);
     }
 }
 

@@ -2,3 +2,4 @@ QtClient/*.Debug
 QtClient/*.Release
 QtClient/debug/*
 QSockServer/debug/*
+QtClient/*.bat
